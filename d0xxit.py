@@ -13,7 +13,7 @@ doxxit = praw.Reddit(user_agent='D0xxIt/0.1 by sgtscherer')
 doxxit.config._ssl_url = None
 doxxit.login('d0xxit', '')
 
-todox = doxxit.get_redditor('kn0thing')
+todox = doxxit.get_redditor('')
 submitted = todox.get_submitted(limit=None)
 comments = todox.get_comments(limit=None)
 
@@ -42,10 +42,10 @@ def get_comment_subs(comms):
 
 	return commented_subs
 
-def common_subs(subreddits):
+def common_subs(submittedSubs,subreddits):
 #This function lists each unique subreddit a user has submitted links to, and printss how many submissions along with it
 
-	for n in countsubs.most_common(len(subreddits)):
+	for n in submittedSubs.most_common(len(subreddits)):
 
 		print n[0] + " " + str(n[1])
 
@@ -69,11 +69,11 @@ def sub_list(list_subs):
 
 	return newlist
 
-get_submitted_subs(submitted)
-get_comment_subs(comments)
+subs = get_submitted_subs(submitted)
+comsubs = get_comment_subs(comments)
 countsubs = collections.Counter(subs)
 countcoms = collections.Counter(comsubs)
 nodupsubs = sub_list(subs)
-common_subs()
-common_comment_subs()
+common_subs(countsubs,subs)
+common_comment_subs(countcoms,comsubs)
 print nodupsubs
