@@ -9,6 +9,10 @@ import matplotlib.pyplot as plt
 subs = []
 comsubs = []
 nodupsubs = []
+commentLabels = []
+submitLabels = []
+commentCount = []
+submitCount = []
 
 doxxit = praw.Reddit(user_agent='D0xxIt/0.1 by sgtscherer')
 doxxit.config._ssl_url = None
